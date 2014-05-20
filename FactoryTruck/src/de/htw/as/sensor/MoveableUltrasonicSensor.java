@@ -7,6 +7,7 @@ import lejos.nxt.UltrasonicSensor;
 public class MoveableUltrasonicSensor extends UltrasonicSensor {
 	
 	private static final int MOTOR_SPEED = 100;
+    private static int direction = 0;
 	
 	private NXTRegulatedMotor motor;
 
@@ -17,7 +18,12 @@ public class MoveableUltrasonicSensor extends UltrasonicSensor {
 	}
 	
 	public void rotate(int angle){
-		motor.rotate(angle);
+        // neue richtung normalisiert (0 - 359)
+        int new_direction = (angle + direction + 360) % 360;
+        
+        int alpha = new_direction - direction;
+        direction = new_direction;
+        
+		motor.rotate(alpha);
 	}
-
 }
