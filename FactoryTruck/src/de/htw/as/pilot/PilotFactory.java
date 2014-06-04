@@ -6,7 +6,7 @@ import lejos.robotics.navigation.DifferentialPilot;
 
 public class PilotFactory {
 	
-	private static final double DEFAULT_TRAVEL_SPEED = 30.0;
+	private static final double DEFAULT_TRAVEL_SPEED = 10.0;
 	private static final double DEFAULT_WHEELDIAMETER = DifferentialPilot.WHEEL_SIZE_NXT2;
 	private static final double DEFAULT_TRACK_WIDTH = 6.0;
 	private static final NXTRegulatedMotor DEFAULT_LEFT_MOTOR = Motor.A;

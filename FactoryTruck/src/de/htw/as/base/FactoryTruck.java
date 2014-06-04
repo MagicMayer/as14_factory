@@ -1,12 +1,17 @@
 package de.htw.as.base;
 
+import de.htw.as.behaviours.DriveForwardBehavior;
+import de.htw.as.behaviours.NormalBehavior;
 import de.htw.as.pilot.PilotFactory;
 import de.htw.as.sensor.MoveableUltrasonicSensor;
 import lejos.nxt.Button;
 import lejos.nxt.Motor;
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.SensorPort;
+import lejos.nxt.Sound;
 import lejos.robotics.navigation.DifferentialPilot;
+import lejos.robotics.subsumption.Arbitrator;
+import lejos.robotics.subsumption.Behavior;
 
 public class FactoryTruck {
 	
@@ -29,6 +34,17 @@ public class FactoryTruck {
 		System.out.println("Press a Button"
 				+ "\nto start...");
 		Button.waitForAnyPress();
+		Sound.beep();
+		
+		
+		Behavior[] behaviors = {
+				new NormalBehavior(),
+				new DriveForwardBehavior(pilot, sensor)
+		};
+		
+		Arbitrator arbitrator = new Arbitrator(behaviors, true);
+		arbitrator.start();
+		
 		/*
 		sensor.rotate(90);
 		System.out.println("Press a Button..");
@@ -36,6 +52,7 @@ public class FactoryTruck {
 		sensor.rotate(-180);
 		System.out.println("Programm End!");
 		*/
+		//pilot.rotate(90);
 		
 	}
 
