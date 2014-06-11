@@ -27,16 +27,22 @@ public class FactoryTruck {
 	
 	public static void main (String[] args){
 		DifferentialPilot pilot = PilotFactory.getDefaultPilot();
+		pilot.setRotateSpeed(50.0);
+		/*
 		MoveableUltrasonicSensor sensor = new MoveableUltrasonicSensor(
 				ULTRASONIC_SENSOR_PORT,
 				SENSOR_MOTOR
 		);
+		*/
 		System.out.println("Press a Button"
 				+ "\nto start...");
 		Button.waitForAnyPress();
 		Sound.beep();
 		
+		pilot.travel(30);;
+		pilot.rotate(90.0);
 		
+		/*
 		Behavior[] behaviors = {
 				new NormalBehavior(),
 				new DriveForwardBehavior(pilot, sensor)
@@ -44,6 +50,7 @@ public class FactoryTruck {
 		
 		Arbitrator arbitrator = new Arbitrator(behaviors, true);
 		arbitrator.start();
+		*/
 		
 		/*
 		sensor.rotate(90);
