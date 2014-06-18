@@ -1,17 +1,18 @@
 package de.htw.as.base;
 
-import de.htw.as.behaviours.DriveForwardBehavior;
-import de.htw.as.behaviours.NormalBehavior;
-import de.htw.as.pilot.PilotFactory;
-import de.htw.as.sensor.MoveableUltrasonicSensor;
 import lejos.nxt.Button;
 import lejos.nxt.Motor;
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.Sound;
+import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
+import de.htw.as.behaviours.DriveForwardBehavior;
+import de.htw.as.behaviours.NormalBehavior;
+import de.htw.as.behaviours.RightCurveBehavior;
+import de.htw.as.pilot.PilotFactory;
 
 public class FactoryTruck {
 	
@@ -28,6 +29,7 @@ public class FactoryTruck {
 	public static void main (String[] args){
 		DifferentialPilot pilot = PilotFactory.getDefaultPilot();
 		pilot.setRotateSpeed(50.0);
+		UltrasonicSensor sensor = new UltrasonicSensor(ULTRASONIC_SENSOR_PORT);
 		/*
 		MoveableUltrasonicSensor sensor = new MoveableUltrasonicSensor(
 				ULTRASONIC_SENSOR_PORT,
@@ -39,18 +41,20 @@ public class FactoryTruck {
 		Button.waitForAnyPress();
 		Sound.beep();
 		
+		/*
 		pilot.travel(30);;
 		pilot.rotate(90.0);
+		*/
 		
-		/*
 		Behavior[] behaviors = {
-				new NormalBehavior(),
-				new DriveForwardBehavior(pilot, sensor)
+				new NormalBehavior(sensor),
+				new DriveForwardBehavior(pilot, sensor),
+				new RightCurveBehavior(pilot, sensor)
 		};
 		
 		Arbitrator arbitrator = new Arbitrator(behaviors, true);
 		arbitrator.start();
-		*/
+		
 		
 		/*
 		sensor.rotate(90);
@@ -60,7 +64,5 @@ public class FactoryTruck {
 		System.out.println("Programm End!");
 		*/
 		//pilot.rotate(90);
-		
 	}
-
 }

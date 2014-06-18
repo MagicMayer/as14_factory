@@ -8,7 +8,7 @@ public class PilotFactory {
 	
 	private static final double DEFAULT_TRAVEL_SPEED = 10.0;
 	private static final double DEFAULT_WHEELDIAMETER = DifferentialPilot.WHEEL_SIZE_NXT2;
-	private static final double DEFAULT_TRACK_WIDTH = 14.62;//6.0;
+	private static final double DEFAULT_TRACK_WIDTH = 9.0;//6.0;
 	private static final NXTRegulatedMotor DEFAULT_LEFT_MOTOR = Motor.A;
 	private static final NXTRegulatedMotor DEFAULT_RIGHT_MOTOR = Motor.B;
 	
