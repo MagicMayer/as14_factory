@@ -1,4 +1,4 @@
-package de.htw.as.behaviours;
+package de.htw.as.behaviors;
 
 import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.navigation.DifferentialPilot;

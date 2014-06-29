@@ -9,9 +9,9 @@ import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
-import de.htw.as.behaviours.DriveForwardBehavior;
-import de.htw.as.behaviours.NormalBehavior;
-import de.htw.as.behaviours.RightCurveBehavior;
+import de.htw.as.behaviors.DriveForwardBehavior;
+import de.htw.as.behaviors.NormalBehavior;
+import de.htw.as.behaviors.RightCurveBehavior;
 import de.htw.as.pilot.PilotFactory;
 
 public class FactoryTruck {
