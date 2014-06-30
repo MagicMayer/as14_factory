@@ -18,7 +18,7 @@ public class MoveableUltrasonicSensor extends UltrasonicSensor {
 	}
 	
 	public void rotate(int angle){
-        // neue richtung normalisiert (0 - 359)
+        /* neue richtung normalisiert (0 - 359) */
         int new_direction = (angle + direction + 360) % 360;
         
         int alpha = new_direction - direction;

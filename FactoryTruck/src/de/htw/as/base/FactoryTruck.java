@@ -19,11 +19,7 @@ public class FactoryTruck {
 	private static final NXTRegulatedMotor SENSOR_MOTOR = Motor.C;
 	private static final SensorPort ULTRASONIC_SENSOR_PORT= SensorPort.S1;
 	
-	/**
-	
-	/**
-	 * Do not make an instance of the main class.
-	 */
+	/* Do not make an instance of the main class. */
 	private FactoryTruck() {}
 	
 	public static void main (String[] args){
@@ -36,26 +32,24 @@ public class FactoryTruck {
 				SENSOR_MOTOR
 		);
 		*/
-		System.out.println("Press a Button"
-				+ "\nto start...");
+		System.out.println("Press a Button" + "\nto start...");
 		Button.waitForAnyPress();
 		Sound.beep();
 		
 		/*
-		pilot.travel(30);;
+		pilot.travel(30);
 		pilot.rotate(90.0);
 		*/
 		
 		Behavior[] behaviors = {
-				new NormalBehavior(sensor),
-				new DriveForwardBehavior(pilot, sensor),
-				new RightCurveBehavior(pilot, sensor)
+			new NormalBehavior(sensor),
+			new DriveForwardBehavior(pilot, sensor),
+			new RightCurveBehavior(pilot, sensor)
 		};
 		
 		Arbitrator arbitrator = new Arbitrator(behaviors, true);
 		arbitrator.start();
-		
-		
+
 		/*
 		sensor.rotate(90);
 		System.out.println("Press a Button..");

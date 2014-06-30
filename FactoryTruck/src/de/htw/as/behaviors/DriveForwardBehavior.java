@@ -35,5 +35,4 @@ public class DriveForwardBehavior implements Behavior {
 	public void suppress() {
 		suppressed = true;
 	}
-
 }

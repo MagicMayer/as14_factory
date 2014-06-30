@@ -4,14 +4,14 @@ import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.subsumption.Behavior;
 
 public class NormalBehavior implements Behavior {
-	
+
 	private UltrasonicSensor sensor;
 	private boolean suppressed = false;
-	
+
 	public NormalBehavior(UltrasonicSensor sensor) {
 		this.sensor = sensor;
 	}
-	
+
 	@Override
 	public boolean takeControl() {
 		return true;
