@@ -1,5 +1,7 @@
 package de.htw.as.behaviors;
 
+import de.htw.as.util.DistanceConstances;
+import de.htw.as.util.NavigationConstances;
 import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
@@ -22,7 +24,7 @@ public class RightCurveBehavior implements Behavior {
 	@Override
 	public boolean takeControl() {
 		/* TODO Auto-generated method stub */
-		return sensor.getDistance() >= 40;
+		return sensor.getDistance() >= DistanceConstances.TOO_FAR;
 	}
 
 	@Override
@@ -30,11 +32,12 @@ public class RightCurveBehavior implements Behavior {
 		suppressed = false;
 		System.out.println("Start Right Curve.");
 		pilot.travel(15);
-		pilot.rotate(-90);
+		pilot.rotate(NavigationConstances.RIGHT_90);
 		
 		while (takeControl()) {
-			pilot.travel(5);	
+			pilot.forward();	
 		}
+		pilot.stop();
 		
 		//pilot.travelArc(ROTATE_ANGLE, TRAVEL_DISTANCE);
 	}

@@ -1,4 +1,4 @@
-package de.htw.as.sensor.util;
+package de.htw.as.util;
 
 public class Justage {
 
