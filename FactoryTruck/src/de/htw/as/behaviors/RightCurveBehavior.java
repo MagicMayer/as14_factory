@@ -23,7 +23,6 @@ public class RightCurveBehavior implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		/* TODO Auto-generated method stub */
 		return sensor.getDistance() >= DistanceConstances.TOO_FAR;
 	}
 
@@ -31,13 +30,18 @@ public class RightCurveBehavior implements Behavior {
 	public void action() {
 		suppressed = false;
 		System.out.println("Start Right Curve.");
-		pilot.travel(15);
+		pilot.arcForward(-25);
+		
+		
+		/*
+		pilot.travel(20);
 		pilot.rotate(NavigationConstances.RIGHT_90);
 		
 		while (takeControl()) {
 			pilot.forward();	
 		}
 		pilot.stop();
+		*/
 		
 		//pilot.travelArc(ROTATE_ANGLE, TRAVEL_DISTANCE);
 	}

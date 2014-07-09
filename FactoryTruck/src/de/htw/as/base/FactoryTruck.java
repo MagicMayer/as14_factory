@@ -1,6 +1,7 @@
 package de.htw.as.base;
 
 import lejos.nxt.Button;
+import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.SensorPort;
@@ -18,6 +19,7 @@ public class FactoryTruck {
 	
 	private static final NXTRegulatedMotor SENSOR_MOTOR = Motor.C;
 	private static final SensorPort ULTRASONIC_SENSOR_PORT= SensorPort.S1;
+	private static final SensorPort LIGHT_SENSOR_PORT= SensorPort.S2;
 	
 	/* Do not make an instance of the main class. */
 	private FactoryTruck() {}
@@ -25,13 +27,9 @@ public class FactoryTruck {
 	public static void main (String[] args){
 		DifferentialPilot pilot = PilotFactory.getDefaultPilot();
 		pilot.setRotateSpeed(50.0);
-		UltrasonicSensor sensor = new UltrasonicSensor(ULTRASONIC_SENSOR_PORT);
-		/*
-		MoveableUltrasonicSensor sensor = new MoveableUltrasonicSensor(
-				ULTRASONIC_SENSOR_PORT,
-				SENSOR_MOTOR
-		);
-		*/
+		UltrasonicSensor ultrasonicSensor = new UltrasonicSensor(ULTRASONIC_SENSOR_PORT);
+		LightSensor lightSensor = new LightSensor(LIGHT_SENSOR_PORT);
+		
 		System.out.println("Press a Button" + "\nto start...");
 		Button.waitForAnyPress();
 		Sound.beep();
@@ -41,14 +39,20 @@ public class FactoryTruck {
 		pilot.rotate(90.0);
 		*/
 		
+
+		
 		Behavior[] behaviors = {
-			new NormalBehavior(sensor),
-			new DriveForwardBehavior(pilot, sensor),
-			new RightCurveBehavior(pilot, sensor)
+			new NormalBehavior(ultrasonicSensor),
+			new DriveForwardBehavior(pilot, ultrasonicSensor, lightSensor),
+			new RightCurveBehavior(pilot, ultrasonicSensor)
 		};
+		
+		
 		
 		Arbitrator arbitrator = new Arbitrator(behaviors, true);
 		arbitrator.start();
+		
+
 
 		/*
 		sensor.rotate(90);
