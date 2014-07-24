@@ -40,10 +40,12 @@ public class DriveForwardBehavior implements Behavior {
 		int secondDistance = 0;
 		while (!suppressed && takeControl()) {	
 			firstDistance = ultrasonicSensor.getDistance();
+			if (!takeControl())	break;
 			System.out.println("D1: " + firstDistance);
 			float traveled = pilot.travelAndSearch(TRAVEL_DISTANCE_PER_TEST, lightSensor, LIGHT_STOP_VALUE);
 			System.out.println("T1: " + traveled);
 			secondDistance = ultrasonicSensor.getDistance();
+			if(!takeControl()) break;
 			System.out.println("D1: " + secondDistance);
 			double angle = Justage.getAngleToChange(traveled, firstDistance - secondDistance);
 			correctPath(secondDistance, angle);
@@ -89,29 +91,34 @@ public class DriveForwardBehavior implements Behavior {
 	}
 	
 	private void correctPath(double distance, double angle){
-		System.out.println("Correct Path, D: " + distance);
+		//System.out.println("Correct Path, D: " + distance);
 		if(distance > DistanceConstances.OPTIMAL_DISTANCE/* + DistanceConstances.TOLERANCE*/){
 			
 			/*
-			pilot.rotate(-45 + angle);
+			pilot.rotate(NavigationConstances.RIGHT_45 + angle);
 			double travel = Math.sqrt(2) * Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
 			*/
+			
 			pilot.rotate(NavigationConstances.RIGHT_90 + angle);
 			double travel = Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
 			
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);
-			//drive(travel);
 			pilot.rotate(NavigationConstances.LEFT_90);
+			//pilot.rotate(NavigationConstances.LEFT_45);
 		} else if(distance < DistanceConstances.OPTIMAL_DISTANCE/* - DistanceConstances.TOLERANCE*/){
-			/*
-			pilot.rotate(45 + angle);
-			double travel = Math.sqrt(2) * Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
-			*/
+			
+			
 			pilot.rotate(NavigationConstances.LEFT_90 + angle);
 			double travel = Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
+			
+			/*
+			pilot.rotate(NavigationConstances.LEFT_45 + angle);
+			double travel = Math.sqrt(2) * Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
+			*/
+
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);;
-			//drive(travel);
 			pilot.rotate(NavigationConstances.RIGHT_90);
+			//pilot.rotate(NavigationConstances.RIGHT_45);
 		} 
 		System.out.println("Path corrected");
 	}

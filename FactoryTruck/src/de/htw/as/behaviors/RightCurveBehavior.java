@@ -35,7 +35,7 @@ public class RightCurveBehavior implements Behavior {
 		
 		
 		
-		pilot.travel(12);
+		pilot.travel(15);
 		pilot.rotate(NavigationConstances.RIGHT_90 + 10);
 		
 		while (takeControl()) {
