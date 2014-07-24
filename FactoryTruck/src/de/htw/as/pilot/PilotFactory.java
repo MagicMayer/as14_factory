@@ -8,7 +8,7 @@ public class PilotFactory {
 	
 	private static final double DEFAULT_TRAVEL_SPEED = 10.0;
 	private static final double DEFAULT_WHEELDIAMETER = DifferentialPilot.WHEEL_SIZE_NXT2;
-	private static final double DEFAULT_TRACK_WIDTH = 9.0; //6.0;
+	private static final double DEFAULT_TRACK_WIDTH = 8.0; //6.0;
 	private static final NXTRegulatedMotor DEFAULT_LEFT_MOTOR = Motor.A;
 	private static final NXTRegulatedMotor DEFAULT_RIGHT_MOTOR = Motor.B;
 
@@ -22,13 +22,13 @@ public class PilotFactory {
 		return pilot;
 	}
 
-	public static DifferentialPilot getDefaultPilot(){
-		return getDifferentialPilot(
-			DEFAULT_LEFT_MOTOR,
-			DEFAULT_RIGHT_MOTOR,
-			DEFAULT_WHEELDIAMETER, 
-			DEFAULT_TRACK_WIDTH,
-			DEFAULT_TRAVEL_SPEED
-			);
+	public static FactoryTruck getDefaultPilot(){
+		return new FactoryTruck(
+				DEFAULT_WHEELDIAMETER,
+				DEFAULT_TRACK_WIDTH,
+				DEFAULT_LEFT_MOTOR,
+				DEFAULT_RIGHT_MOTOR,
+				DEFAULT_TRAVEL_SPEED
+				);
 	}
 }
