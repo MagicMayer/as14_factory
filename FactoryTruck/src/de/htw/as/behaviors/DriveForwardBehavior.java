@@ -4,9 +4,9 @@ import lejos.nxt.LightSensor;
 import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.subsumption.Behavior;
 import de.htw.as.pilot.FactoryTruck;
-import de.htw.as.util.DistanceConstances;
+import de.htw.as.util.DistanceConstants;
 import de.htw.as.util.Justage;
-import de.htw.as.util.NavigationConstances;
+import de.htw.as.util.NavigationConstants;
 
 public class DriveForwardBehavior implements Behavior {
 	
@@ -29,7 +29,7 @@ public class DriveForwardBehavior implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		return (ultrasonicSensor.getDistance() > DistanceConstances.TOO_CLOSE && ultrasonicSensor.getDistance() < DistanceConstances.TOO_FAR);
+		return (ultrasonicSensor.getDistance() > DistanceConstants.TOO_CLOSE && ultrasonicSensor.getDistance() < DistanceConstants.TOO_FAR);
 	}
 
 	@Override
@@ -92,24 +92,24 @@ public class DriveForwardBehavior implements Behavior {
 	
 	private void correctPath(double distance, double angle){
 		//System.out.println("Correct Path, D: " + distance);
-		if(distance > DistanceConstances.OPTIMAL_DISTANCE/* + DistanceConstances.TOLERANCE*/){
+		if(distance > DistanceConstants.OPTIMAL_DISTANCE/* + DistanceConstances.TOLERANCE*/){
 			
 			/*
 			pilot.rotate(NavigationConstances.RIGHT_45 + angle);
 			double travel = Math.sqrt(2) * Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
 			*/
 			
-			pilot.rotate(NavigationConstances.RIGHT_90 + angle);
-			double travel = Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
+			pilot.rotate(NavigationConstants.RIGHT_90 + angle);
+			double travel = Math.abs(DistanceConstants.OPTIMAL_DISTANCE - distance);
 			
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);
-			pilot.rotate(NavigationConstances.LEFT_90);
+			pilot.rotate(NavigationConstants.LEFT_90);
 			//pilot.rotate(NavigationConstances.LEFT_45);
-		} else if(distance < DistanceConstances.OPTIMAL_DISTANCE/* - DistanceConstances.TOLERANCE*/){
+		} else if(distance < DistanceConstants.OPTIMAL_DISTANCE/* - DistanceConstances.TOLERANCE*/){
 			
 			
-			pilot.rotate(NavigationConstances.LEFT_90 + angle);
-			double travel = Math.abs(DistanceConstances.OPTIMAL_DISTANCE - distance);
+			pilot.rotate(NavigationConstants.LEFT_90 + angle);
+			double travel = Math.abs(DistanceConstants.OPTIMAL_DISTANCE - distance);
 			
 			/*
 			pilot.rotate(NavigationConstances.LEFT_45 + angle);
@@ -117,7 +117,7 @@ public class DriveForwardBehavior implements Behavior {
 			*/
 
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);;
-			pilot.rotate(NavigationConstances.RIGHT_90);
+			pilot.rotate(NavigationConstants.RIGHT_90);
 			//pilot.rotate(NavigationConstances.RIGHT_45);
 		} 
 		System.out.println("Path corrected");

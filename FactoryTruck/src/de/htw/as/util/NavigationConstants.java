@@ -1,6 +1,6 @@
 package de.htw.as.util;
 
-public class NavigationConstances {
+public class NavigationConstants {
 	
 	public static final int RIGHT_45 = -45;
 	public static final int LEFT_45 = 45;
@@ -9,6 +9,6 @@ public class NavigationConstances {
 	public static final int RIGHT_180 = -180;
 	public static final int LEFT_180 = -180;
 	
-	private NavigationConstances() {}
+	private NavigationConstants() {}
 
 }
