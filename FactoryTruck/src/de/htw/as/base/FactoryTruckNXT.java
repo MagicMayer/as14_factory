@@ -7,13 +7,11 @@ import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.Sound;
 import lejos.nxt.UltrasonicSensor;
-import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 import de.htw.as.behaviors.DriveForwardBehavior;
 import de.htw.as.behaviors.NormalBehavior;
 import de.htw.as.behaviors.RightCurveBehavior;
-import de.htw.as.behaviors.TooCloseBehavior;
 import de.htw.as.pilot.FactoryTruck;
 import de.htw.as.pilot.PilotFactory;
 
@@ -35,35 +33,12 @@ public class FactoryTruckNXT {
 		System.out.println("Press a Button" + "\nto start...");
 		Button.waitForAnyPress();
 		Sound.beep();
-		
-		/*
-		pilot.travel(30);
-		pilot.rotate(90.0);
-		*/
-		
-
-		
 		Behavior[] behaviors = {
 			new NormalBehavior(ultrasonicSensor),
 			new DriveForwardBehavior(pilot, ultrasonicSensor, lightSensor),
 			new RightCurveBehavior(pilot, ultrasonicSensor)
-//			new TooCloseBehavior(ultrasonicSensor, pilot)
 		};
-		
-		
-		
 		Arbitrator arbitrator = new Arbitrator(behaviors, true);
 		arbitrator.start();
-		
-
-
-		/*
-		sensor.rotate(90);
-		System.out.println("Press a Button..");
-		Button.waitForAnyPress();
-		sensor.rotate(-180);
-		System.out.println("Programm End!");
-		*/
-		//pilot.rotate(90);
 	}
 }

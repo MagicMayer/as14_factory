@@ -8,9 +8,6 @@ import de.htw.as.util.NavigationConstants;
 
 public class RightCurveBehavior implements Behavior {
 	
-	private static final double ROTATE_ANGLE = -90.0;
-	private static final double TRAVEL_DISTANCE = 40.0;
-	
 	private UltrasonicSensor sensor;
 	private DifferentialPilot pilot;
 	private boolean suppressed;
@@ -29,12 +26,7 @@ public class RightCurveBehavior implements Behavior {
 	@Override
 	public void action() {
 		suppressed = false;
-		System.out.println("Start Right Curve.");
-		//pilot.travelArc(-DistanceConstances.OPTIMAL_DISTANCE , 10);
-		//pilot.arcForward(-DistanceConstances.OPTIMAL_DISTANCE + 10);
-		
-		
-		
+		System.out.println("Start Right Curve.");		
 		pilot.travel(15);
 		pilot.rotate(NavigationConstants.RIGHT_90 + 10);
 		
@@ -42,10 +34,6 @@ public class RightCurveBehavior implements Behavior {
 			pilot.forward();
 		}
 		pilot.stop();
-		
-		
-		
-		//pilot.travelArc(ROTATE_ANGLE, TRAVEL_DISTANCE);
 	}
 
 	@Override
