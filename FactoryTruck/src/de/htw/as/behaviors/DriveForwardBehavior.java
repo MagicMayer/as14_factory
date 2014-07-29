@@ -57,13 +57,13 @@ public class DriveForwardBehavior implements Behavior {
 	
 	private void correctPath(double distance, double angle){
 		//System.out.println("Correct Path, D: " + distance);
-		if(distance > DistanceConstants.OPTIMAL_DISTANCE + DistanceConstances.TOLERANCE){
+		if(distance > (DistanceConstants.OPTIMAL_DISTANCE + DistanceConstances.TOLERANCE)){
 			pilot.rotate(NavigationConstants.RIGHT_90 + angle);
 			double travel = Math.abs(DistanceConstants.OPTIMAL_DISTANCE - distance);
 			
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);
 			pilot.rotate(NavigationConstants.LEFT_90);
-		} else if(distance < DistanceConstants.OPTIMAL_DISTANCE - DistanceConstances.TOLERANCE){
+		} else if(distance < (DistanceConstants.OPTIMAL_DISTANCE - DistanceConstances.TOLERANCE)){
 			
 			pilot.rotate(NavigationConstants.LEFT_90 + angle);
 			double travel = Math.abs(DistanceConstants.OPTIMAL_DISTANCE - distance);
