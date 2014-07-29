@@ -4,9 +4,8 @@ import lejos.nxt.LightSensor;
 import lejos.nxt.UltrasonicSensor;
 import lejos.robotics.subsumption.Behavior;
 import de.htw.as.pilot.FactoryTruck;
-import de.htw.as.util.DistanceConstants;
+import de.htw.as.util.Const;
 import de.htw.as.util.Justage;
-import de.htw.as.util.NavigationConstants;
 
 public class DriveForwardBehavior implements Behavior {
 	
@@ -27,7 +26,7 @@ public class DriveForwardBehavior implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		return (ultrasonicSensor.getDistance() > DistanceConstants.TOO_CLOSE && ultrasonicSensor.getDistance() < DistanceConstants.TOO_FAR);
+		return (ultrasonicSensor.getDistance() > Const.TOO_CLOSE && ultrasonicSensor.getDistance() < Const.TOO_FAR);
 	}
 
 	@Override
@@ -57,19 +56,19 @@ public class DriveForwardBehavior implements Behavior {
 	
 	private void correctPath(double distance, double angle){
 		//System.out.println("Correct Path, D: " + distance);
-		if(distance > (DistanceConstants.OPTIMAL_DISTANCE + DistanceConstances.TOLERANCE)){
-			pilot.rotate(NavigationConstants.RIGHT_90 + angle);
-			double travel = Math.abs(DistanceConstants.OPTIMAL_DISTANCE - distance);
+		if(distance > (Const.OPTIMAL_DISTANCE + DistanceConstances.TOLERANCE)){
+			pilot.rotate(Const.RIGHT_90 + angle);
+			double travel = Math.abs(Const.OPTIMAL_DISTANCE - distance);
 			
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);
-			pilot.rotate(NavigationConstants.LEFT_90);
-		} else if(distance < (DistanceConstants.OPTIMAL_DISTANCE - DistanceConstances.TOLERANCE)){
+			pilot.rotate(Const.LEFT_90);
+		} else if(distance < (Const.OPTIMAL_DISTANCE - DistanceConstances.TOLERANCE)){
 			
-			pilot.rotate(NavigationConstants.LEFT_90 + angle);
-			double travel = Math.abs(DistanceConstants.OPTIMAL_DISTANCE - distance);
+			pilot.rotate(Const.LEFT_90 + angle);
+			double travel = Math.abs(Const.OPTIMAL_DISTANCE - distance);
 			
 			pilot.travelAndSearch(travel, lightSensor, LIGHT_STOP_VALUE);
-			pilot.rotate(NavigationConstants.RIGHT_90);
+			pilot.rotate(Const.RIGHT_90);
 		}
 		System.out.println("Path corrected");
 	}
