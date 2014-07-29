@@ -42,5 +42,4 @@ public class FactoryTruck extends DifferentialPilot{
 		stop();
 		return traveled;
 	}
-
 }

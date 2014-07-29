@@ -10,5 +10,4 @@ public class NavigationConstants {
 	public static final int LEFT_180 = -180;
 	
 	private NavigationConstants() {}
-
 }
