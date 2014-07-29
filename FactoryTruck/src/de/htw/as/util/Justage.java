@@ -6,7 +6,7 @@ public class Justage {
     private Justage() {
     }
 
-    /* Wenn schraeg zur Wand gefahren wird, wird dadurch falsch gemessen. */
+    /* Wenn schraeg zur Wand gefahren wird, werden die Messwerte verzerrt. Das wird hier korrigiert */
     public static double wahrerAbstand(double gemessen, double angle){
         return gemessen * Math.cos(angle / 180. * Math.PI);
     }
